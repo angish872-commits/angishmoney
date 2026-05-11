@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top 10 Templates Gallery | Premium Website Template Guide 2026</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f0f2f5;
+            color: #333;
+        }
+        .header {
+            background: linear-gradient(135deg, #1B2A4A 0%, #2C4A7C 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .header h1 { font-size: 2.2em; margin-bottom: 10px; }
+        .header h1 span { color: #C9A84C; }
+        .header p { font-size: 1.1em; opacity: 0.9; }
+        .header .badge {
+            display: inline-block;
+            background: #C9A84C;
+            color: #1B2A4A;
+            padding: 6px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-top: 15px;
+            font-size: 0.9em;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 30px 20px; }
+        .intro {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .intro h2 { color: #1B2A4A; margin-bottom: 10px; }
+        .intro-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px; }
+        .stat-card {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .stat-card .num { font-size: 2em; font-weight: bold; color: #1B2A4A; }
+        .stat-card .label { font-size: 0.85em; color: #666; }
+        
+        .tier-filter {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+        .tier-filter button {
+            padding: 8px 20px;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            background: white;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9em;
+            transition: all 0.2s;
+        }
+        .tier-filter button:hover { border-color: #1B2A4A; }
+        .tier-filter button.active { background: #1B2A4A; color: white; border-color: #1B2A4A; }
+        
+        .template-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+        }
+        .template-card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.12); }
+        .card-rank {
+            min-width: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5em;
+            font-weight: 900;
+            color: white;
+        }
+        .rank-1 { background: linear-gradient(135deg, #FFD700, #FFA500); }
+        .rank-2 { background: linear-gradient(135deg, #C0C0C0, #A8A8A8); }
+        .rank-3 { background: linear-gradient(135deg, #CD7F32, #B8860B); }
+        .rank-other { background: linear-gradient(135deg, #1B2A4A, #2C4A7C); }
+        
+        .card-content { padding: 20px; flex: 1; }
+        .card-content h3 { font-size: 1.2em; margin-bottom: 5px; color: #1B2A4A; }
+        .card-content .category { font-size: 0.85em; color: #888; margin-bottom: 10px; }
+        .tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0; }
+        .tag {
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.78em;
+            font-weight: 600;
+        }
+        .tag-react { background: #E3F2FD; color: #1565C0; }
+        .tag-nextjs { background: #E8E8E8; color: #000; }
+        .tag-threejs { background: #FFF3E0; color: #E65100; }
+        .tag-tailwind { background: #E0F2F1; color: #00695C; }
+        .tag-bootstrap { background: #F3E5F5; color: #7B1FA2; }
+        .tag-docker { background: #E3F2FD; color: #0D47A1; }
+        .tag-typescript { background: #E8EAF6; color: #283593; }
+        
+        .card-meta { display: flex; gap: 20px; margin: 10px 0; flex-wrap: wrap; }
+        .card-meta .item { font-size: 0.85em; color: #666; }
+        .card-meta .item strong { color: #333; }
+        
+        .tier-badge {
+            display: inline-block;
+            padding: 4px 14px;
+            border-radius: 15px;
+            font-weight: 800;
+            font-size: 0.8em;
+        }
+        .tier-S { background: linear-gradient(135deg, #FFD700, #FFA500); color: #5C3D00; }
+        .tier-A { background: linear-gradient(135deg, #4169E1, #6495ED); color: white; }
+        .tier-B { background: linear-gradient(135deg, #2ECC71, #27AE60); color: white; }
+        .tier-C { background: linear-gradient(135deg, #95A5A6, #7F8C8D); color: white; }
+        .tier-D { background: linear-gradient(135deg, #BDC3C7, #95A5A6); color: #333; }
+        
+        .preview-link {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 20px;
+            background: #1B2A4A;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9em;
+            transition: background 0.2s;
+        }
+        .preview-link:hover { background: #2C4A7C; }
+        .preview-link.disabled { background: #ccc; cursor: not-allowed; pointer-events: none; }
+        
+        .economy-flags { margin-top: 10px; }
+        .economy-flags span {
+            display: inline-block;
+            padding: 2px 8px;
+            margin: 2px;
+            background: #f0f2f5;
+            border-radius: 4px;
+            font-size: 0.75em;
+        }
+        
+        .threeD-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #FF6B6B, #EE4444);
+            color: white;
+            padding: 3px 12px;
+            border-radius: 12px;
+            font-size: 0.75em;
+            font-weight: 700;
+            margin-left: 8px;
+        }
+        
+        .score-bar {
+            height: 6px;
+            background: #e0e0e0;
+            border-radius: 3px;
+            margin-top: 8px;
+            overflow: hidden;
+        }
+        .score-fill {
+            height: 100%;
+            border-radius: 3px;
+            background: linear-gradient(90deg, #C9A84C, #FFD700);
+        }
+
+        .server-info {
+            background: #FFF8E1;
+            border: 1px solid #FFE082;
+            border-radius: 10px;
+            padding: 15px 20px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        .server-info code {
+            background: #1B2A4A;
+            color: #C9A84C;
+            padding: 3px 12px;
+            border-radius: 5px;
+            font-size: 1.1em;
+        }
+        
+        @media (max-width: 768px) {
+            .template-card { flex-direction: column; }
+            .card-rank { min-width: 100%; padding: 15px; font-size: 1.8em; }
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <h1>🏆 Premium <span>Template</span> Gallery</h1>
+    <p>Top 10 Ranked Templates · 3D Websites · Full-Stack Solutions</p>
+    <div class="badge">✦ 301 Templates · 25+ Categories · 10 Economies · $253K Revenue Potential</div>
+</div>
+
+<div class="container">
+    <div class="server-info">
+        📡 <strong>Local Server Active</strong> — Serving from <code>/home/angish/angish-profiliobest</code>
+    </div>
+
+    <div class="intro">
+        <h2>🎯 Top 10 Templates Showcase</h2>
+        <p>These are the highest-ranked templates from our comprehensive analysis of 301 templates across 25+ categories. Each template is evaluated on Visual Score, Function Score, Value Score, and Composite Score — then matched to pricing tiers and global economies.</p>
+        <div class="intro-grid">
+            <div class="stat-card"><div class="num">301</div><div class="label">Total Templates</div></div>
+            <div class="stat-card"><div class="num">25+</div><div class="label">Categories</div></div>
+            <div class="stat-card"><div class="num">10</div><div class="label">Economies Mapped</div></div>
+            <div class="stat-card"><div class="num">$253K</div><div class="label">Revenue Potential</div></div>
+        </div>
+    </div>
+
+    <div class="tier-filter">
+        <button class="active" onclick="filterTier('all')">🌟 All Tiers</button>
+        <button onclick="filterTier('S')">🥇 Tier S ($5K-$10K)</button>
+        <button onclick="filterTier('A')">🥈 Tier A ($2K-$5K)</button>
+        <button onclick="filterTier('B')">🥉 Tier B ($500-$2K)</button>
+        <button onclick="filterTier('C')">⚙️ Tier C ($100-$500)</button>
+        <button onclick="filterTier('D')">🔧 Tier D ($0-$100)</button>
+    </div>
+
+    <div id="template-list"></div>
+</div>
+
+<script>
+const templates = [
+    {
+        rank: 1,
+        name: "nextjs-wedding-photographer-website",
+        category: "photography-wedding",
+        score: 10.0,
+        tier: "S",
+        priceMin: 5000,
+        priceMax: 10000,
+        visual: 10,
+        function: 10,
+        value: 10,
+        tech: ["React", "Next.js", "Three.js", "Tailwind"],
+        features: ["Docker", "Framer Motion", "TypeScript", "3D Animations"],
+        economies: ["USA", "Canada", "UK", "Australia", "Switzerland", "Germany", "France"],
+        has3d: true,
+        path: "/photography-wedding/nextjs-wedding-photographer-website",
+        size: "322.9M",
+        files: 1003,
+        desc: "Premium wedding photographer portfolio with Three.js 3D effects, Next.js SSR, and Docker deployment. Full CMS-ready architecture."
+    },
+    {
+        rank: 2,
+        name: "Fashion-eCommerce-Shop-in-React",
+        category: "fashion",
+        score: 9.0,
+        tier: "S",
+        priceMin: 4000,
+        priceMax: 8000,
+        visual: 7,
+        function: 10,
+        value: 10,
+        tech: ["React", "Tailwind"],
+        features: ["Ecommerce", "TypeScript", "Redux"],
+        economies: ["USA", "Canada", "UK", "Australia", "France", "Switzerland", "Germany"],
+        has3d: false,
+        path: "/fashion/Fashion-eCommerce-Shop-in-React",
+        size: "107.3M",
+        files: 163,
+        desc: "Full-featured fashion ecommerce store built with React and Tailwind. Product catalog, cart, checkout, and admin panel."
+    },
+    {
+        rank: 3,
+        name: "Sayanth-portfolio",
+        category: "3d-websites",
+        score: 8.0,
+        tier: "A",
+        priceMin: 2000,
+        priceMax: 5000,
+        visual: 9,
+        function: 7,
+        value: 8,
+        tech: ["React", "Three.js"],
+        features: ["TypeScript", "3D Character", "GSAP Animations"],
+        economies: ["USA", "Canada", "UK", "Australia", "Switzerland", "Germany", "France"],
+        has3d: true,
+        path: "/3d-websites/Sayanth-portfolio",
+        size: "88.0M",
+        files: 114,
+        desc: "Immersive 3D portfolio website with interactive 3D character model, Three.js scenes, and smooth GSAP scroll animations."
+    },
+    {
+        rank: 4,
+        name: "masterPortfolio",
+        category: "portfolios",
+        score: 8.0,
+        tier: "A",
+        priceMin: 2000,
+        priceMax: 5000,
+        visual: 7,
+        function: 9,
+        value: 8,
+        tech: ["React", "Bootstrap"],
+        features: ["Docker", "PWA", "Responsive"],
+        economies: ["USA", "Canada", "UK", "Australia", "Switzerland", "Germany", "France"],
+        has3d: false,
+        path: "/portfolios/masterPortfolio",
+        size: "78.7M",
+        files: 1900,
+        desc: "Full-featured developer portfolio with blog, projects showcase, testimonials, and Docker support. Highly functional."
+    },
+    {
+        rank: 5,
+        name: "hashir-home",
+        category: "portfolios",
+        score: 8.0,
+        tier: "A",
+        priceMin: 2000,
+        priceMax: 5000,
+        visual: 10,
+        function: 6,
+        value: 8,
+        tech: ["React"],
+        features: ["Minimal Design", "Clean UI"],
+        economies: ["USA", "Canada", "UK", "Australia", "Switzerland", "Germany", "France"],
+        has3d: false,
+        path: "/portfolios/hashir-home",
+        size: "69.6M",
+        files: 87,
+        desc: "Stunning minimal portfolio with exceptional visual design. Clean, modern aesthetic perfect for creative professionals."
+    },
+    {
+        rank: 6,
+        name: "said7388-portfolio",
+        category: "portfolios",
+        score: 8.0,
+        tier: "A",
+        priceMin: 2000,
+        priceMax: 5000,
+        visual: 7,
+        function: 9,
+        value: 8,
+        tech: ["React", "Next.js", "Bootstrap", "Tailwind"],
+        features: ["Docker", "TypeScript"],
+        economies: ["USA", "Canada", "UK", "Australia", "Switzerland", "Germany", "France"],
+        has3d: false,
+        path: "/portfolios/said7388-portfolio",
+        size: "45.0M",
+        files: 226,
+        desc: "Full-stack developer portfolio with Next.js, multiple tech integrations, responsive design, and Docker deployment."
+    },
+    {
+        rank: 7,
+        name: "Travel_Website",
+        category: "tourism",
+        score: 7.7,
+        tier: "A",
+        priceMin: 2000,
+        priceMax: 5000,
+        visual: 7,
+        function: 8,
+        value: 8,
+        tech: ["Bootstrap"],
+        features: ["75+ Pages", "Multi-page", "Tour Listings"],
+        economies: ["USA", "Canada", "UK", "Australia", "France", "Switzerland", "Germany"],
+        has3d: false,
+        path: "/tourism/Travel_Website",
+        size: "824.5M",
+        files: 583,
+        desc: "Massive tourism/ travel website with 75+ HTML pages. Complete travel agency solution with destination guides and booking."
+    },
+    {
+        rank: 8,
+        name: "awesome-landing-pages",
+        category: "landing-pages",
+        score: 7.7,
+        tier: "A",
+        priceMin: 2000,
+        priceMax: 5000,
+        visual: 7,
+        function: 8,
+        value: 8,
+        tech: ["Tailwind"],
+        features: ["23 Landing Pages", "Multi-industry", "Modern Design"],
+        economies: ["USA", "Canada", "UK", "Australia", "Switzerland", "Germany", "France"],
+        has3d: false,
+        path: "/landing-pages/awesome-landing-pages",
+        size: "79.2M",
+        files: 554,
+        desc: "Collection of 23 beautiful landing pages across industries — SaaS, AI, Real Estate, Portfolio, Restaurant, Law, and more."
+    },
+    {
+        rank: 9,
+        name: "techmahr_dinecraft",
+        category: "cafe-restaurant",
+        score: 7.7,
+        tier: "A",
+        priceMin: 2000,
+        priceMax: 5000,
+        visual: 7,
+        function: 8,
+        value: 8,
+        tech: ["Bootstrap"],
+        features: ["18 HTML Pages", "Menu Systems", "Reservation"],
+        economies: ["USA", "Canada", "UK", "Australia", "France", "Switzerland", "Germany"],
+        has3d: false,
+        path: "/cafe-restaurant/techmahr_dinecraft",
+        size: "72.9M",
+        files: 155,
+        desc: "Complete restaurant/cafe website with menu showcase, online reservation, gallery, blog, and 18+ HTML pages."
+    },
+    {
+        rank: 10,
+        name: "themefisher_newsbit",
+        category: "news",
+        score: 7.7,
+        tier: "A",
+        priceMin: 2000,
+        priceMax: 5000,
+        visual: 7,
+        function: 8,
+        value: 8,
+        tech: ["Bootstrap"],
+        features: ["76 HTML Pages", "Magazine Layout", "Category System"],
+        economies: ["USA", "Canada", "UK", "Australia", "Switzerland", "Germany", "France"],
+        has3d: false,
+        path: "/news/themefisher_newsbit",
+        size: "27.1M",
+        files: 320,
+        desc: "Full-featured news/magazine website with 76 HTML pages, multiple category layouts, and responsive Bootstrap design."
+    }
+];
+
+function renderTemplates(filter) {
+    const container = document.getElementById('template-list');
+    const filtered = filter === 'all' ? templates : templates.filter(t => t.tier === filter);
+    
+    container.innerHTML = filtered.map(t => {
+        const rankClass = t.rank <= 3 ? `rank-${t.rank}` : 'rank-other';
+        const tierClass = `tier-${t.tier}`;
+        
+        const techTags = t.tech.map(tech => {
+            const cls = tech.toLowerCase().replace(/[.\s]/g, '').replace(/\/.*$/, '');
+            return `<span class="tag tag-${cls}">${tech}</span>`;
+        }).join('');
+        
+        return `
+        <div class="template-card" data-tier="${t.tier}">
+            <div class="card-rank ${rankClass}">#${t.rank}</div>
+            <div class="card-content">
+                <h3>${t.name} ${t.has3d ? '<span class="threeD-badge">✦ 3D</span>' : ''}</h3>
+                <div class="category">📂 ${t.category} · ${t.size} · ${t.files} files</div>
+                <p>${t.desc}</p>
+                <div class="tags">${techTags}</div>
+                <div class="card-meta">
+                    <div class="item"><strong>Score:</strong> ${t.score}/10</div>
+                    <div class="item"><strong>Visual:</strong> ${t.visual}/10</div>
+                    <div class="item"><strong>Function:</strong> ${t.function}/10</div>
+                    <div class="item"><strong>Value:</strong> ${t.value}/10</div>
+                    <div class="item"><span class="tier-badge ${tierClass}">Tier ${t.tier}</span></div>
+                    <div class="item"><strong>💰</strong> $${t.priceMin.toLocaleString()} – $${t.priceMax.toLocaleString()}</div>
+                </div>
+                <div class="score-bar"><div class="score-fill" style="width: ${t.score * 10}%"></div></div>
+                <div class="economy-flags">
+                    🌍 ${t.economies.map(e => `<span>${e}</span>`).join('')}
+                </div>
+                <div style="margin-top: 12px;">
+                    <a href="../${t.path}" target="_blank" class="preview-link">📂 Browse Source</a>
+                    ${t.category === 'tourism' || t.category === 'cafe-restaurant' || t.category === 'news' ? 
+                        `<a href="../${t.path}" target="_blank" class="preview-link" style="background: #2ECC71;">👁️ Preview Static</a>` : 
+                        `<span class="preview-link disabled">⚡ Needs Build (React/Next.js)</span>`}
+                </div>
+            </div>
+        </div>`;
+    }).join('');
+}
+
+function filterTier(tier) {
+    document.querySelectorAll('.tier-filter button').forEach(b => b.classList.remove('active'));
+    event.target.classList.add('active');
+    renderTemplates(tier);
+}
+
+renderTemplates('all');
+</script>
+</body>
+</html>
