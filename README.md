@@ -5,7 +5,7 @@
 ### 860+ Website Templates • 95+ Categories • 7 Collections
 
 [![GitHub](https://img.shields.io/badge/GitHub-angish872--commits-4facfe?style=for-the-badge&logo=github)](https://github.com/angish872-commits)
-[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live-00f2fe?style=for-the-badge&logo=githubpages)](https://angish872-commits.github.io/project-universe)
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live-00f2fe?style=for-the-badge&logo=githubpages)](https://angish872-commits.github.io/angishmoney/)
 [![License](https://img.shields.io/badge/License-MIT-f093fb?style=for-the-badge)](LICENSE)
 [![Templates](https://img.shields.io/badge/Templates-860%2B-4facfe?style=for-the-badge)](#categories)
 
@@ -31,7 +31,7 @@ A massive, curated showcase of **860+ free website templates** spanning **95+ in
 
 ## 🚀 Live Demo
 
-**👉 [View the Live Gallery](https://angish872-commits.github.io/project-universe/)**
+**👉 [View the Live Gallery](https://angish872-commits.github.io/angishmoney/)**
 
 ---
 
