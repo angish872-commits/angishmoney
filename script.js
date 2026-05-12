@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('searchInput');
     const categorySelect = document.getElementById('categorySelect');
     const loadMoreBtn = document.getElementById('loadMoreBtn');
+    const scrollTopBtn = document.getElementById('scrollTopBtn');
 
     let displayedCount = 0;
     const ITEMS_PER_PAGE = 50;
@@ -30,16 +31,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const toDisplay = filteredProjects.slice(displayedCount, displayedCount + ITEMS_PER_PAGE);
         
-        toDisplay.forEach(project => {
+        toDisplay.forEach((project, index) => {
             const cardLink = document.createElement('a');
             cardLink.href = project.url;
             cardLink.target = '_blank';
             cardLink.className = 'card-link';
+            cardLink.style.setProperty('--delay', index);
             cardLink.innerHTML = `
                 <div class="project-card" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.2">
                     <div class="card-img-wrapper">
-                        <!-- We use lazy loading for performance -->
-                        <img src="${project.image}" alt="${project.name}" loading="lazy">
+                        <img src="${project.image}" alt="${project.name}" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('img-failed')">
                     </div>
                     <div class="card-content">
                         <div>
@@ -57,11 +58,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
         displayedCount += toDisplay.length;
 
-        // Initialize VanillaTilt for new cards
+        // Initialize VanillaTilt for new cards (skip on mobile)
+        const isMobile = window.innerWidth < 768;
         const newCards = grid.querySelectorAll('.project-card:not(.tilt-initialized)');
-        if (typeof VanillaTilt !== 'undefined') {
+        if (typeof VanillaTilt !== 'undefined' && !isMobile) {
             VanillaTilt.init(newCards);
             newCards.forEach(card => card.classList.add('tilt-initialized'));
+        } else if (isMobile) {
+            newCards.forEach(card => {
+                card.removeAttribute('data-tilt');
+                card.classList.add('tilt-initialized');
+            });
         }
 
         // Mouse hover glow effect
@@ -75,12 +82,84 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
+        // Observe new cards for scroll animation
+        observeCards(toDisplay.length);
+
         // Toggle Load More button
         if (displayedCount >= filteredProjects.length) {
             loadMoreBtn.classList.add('hidden');
         } else {
             loadMoreBtn.classList.remove('hidden');
         }
+    }
+
+    // Intersection Observer for card scroll animations
+    let cardObserver = null;
+    function observeCards() {
+        if (!cardObserver) {
+            cardObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        cardObserver.unobserve(entry.target);
+                    }
+                });
+            }, { rootMargin: '0px 0px -100px 0px' });
+        }
+        document.querySelectorAll('.card-link:not(.observed)').forEach(el => {
+            el.classList.add('observed');
+            cardObserver.observe(el);
+        });
+    }
+
+    // Animated counter for stats
+    function animateCounters() {
+        const counters = document.querySelectorAll('.stat-number');
+        const statsSection = document.getElementById('statsBar');
+        if (!counters.length || !statsSection) return;
+
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    counters.forEach(counter => {
+                        const target = parseInt(counter.dataset.target);
+                        const duration = 2000;
+                        const start = performance.now();
+
+                        function update(currentTime) {
+                            const elapsed = currentTime - start;
+                            const progress = Math.min(elapsed / duration, 1);
+                            const eased = 1 - Math.pow(1 - progress, 3);
+                            counter.textContent = Math.floor(eased * target);
+                            if (progress < 1) {
+                                requestAnimationFrame(update);
+                            } else {
+                                counter.textContent = target + '+';
+                            }
+                        }
+                        requestAnimationFrame(update);
+                    });
+                    counterObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        counterObserver.observe(statsSection);
+    }
+
+    // Scroll to top button visibility
+    function initScrollToTop() {
+        if (!scrollTopBtn) return;
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
     }
 
     // Filter Logic
@@ -97,6 +176,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         renderCards(false);
+        // Smooth scroll to top of grid on filter
+        grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
     // Event Listeners
@@ -107,4 +188,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initial setup
     initCategories();
     renderCards();
+    animateCounters();
+    initScrollToTop();
 });
